@@ -1,0 +1,74 @@
+openapi: 3.0.0
+info:
+  title: People API
+  description: API for managing people data
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+paths:
+  /:
+    get:
+      summary: "Root endpoint"
+      description: "Returns a greeting message"
+      responses:
+        '200':
+          description: "Successful response"
+          content:
+            text/plain:
+              schema:
+                type: string
+  /people:
+    get:
+      summary: "Get people"
+      description: "Retrieves a list of people from the database"
+      responses:
+        '200':
+          description: "A list of people"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    # Define properties of a person object here
+                    name:
+                      type: string
+                    age:
+                      type: integer
+                    # Add other properties as needed
+    post:
+      summary: "Add a new person"
+      description: "Adds a new person to the database"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                # Define properties of a person object here
+                name:
+                  type: string
+                age:
+                  type: integer
+                # Add other properties as needed
+      responses:
+        '200':
+          description: "Document successfully written"
+          content:
+            text/plain:
+              schema:
+                type: string
+components:
+  schemas:
+    Person:
+      type: object
+      properties:
+        name:
+          type: string
+        age:
+          type: integer
+      required:
+        - name
+        - age
